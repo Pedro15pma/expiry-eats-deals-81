@@ -5,17 +5,35 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import CartDrawer from "./CartDrawer";
 import { useCart } from "@/contexts/CartContext";
+import AuthModal from "./AuthModal";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [cartOpen, setCartOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const { totalItems } = useCart();
+  const navigate = useNavigate();
+
+  // For demo purposes, track if user is logged in
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  // Simulating login state for demo purposes
+  const handleLoginClick = () => {
+    if (isLoggedIn) {
+      // Log out
+      setIsLoggedIn(false);
+    } else {
+      // Open login modal
+      setAuthOpen(true);
+    }
+  };
 
   return (
     <header className="bg-white shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center cursor-pointer" onClick={() => navigate('/')}>
             <div className="flex-shrink-0 flex items-center">
               <span className="text-2xl font-bold text-green-600">FreshSave</span>
               <span className="text-lg text-gray-600 ml-1">Market</span>
@@ -55,15 +73,30 @@ const Header = () => {
               </Button>
               <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
             </div>
-            <Button variant="ghost" size="icon">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={handleLoginClick}
+            >
               <User className="h-5 w-5" />
             </Button>
-            <Button className="bg-green-600 hover:bg-green-700">
-              Entrar
+            <Button 
+              className="bg-green-600 hover:bg-green-700"
+              onClick={handleLoginClick}
+            >
+              {isLoggedIn ? "Sair" : "Entrar"}
             </Button>
           </div>
         </div>
       </div>
+      <AuthModal 
+        isOpen={authOpen} 
+        onClose={() => {
+          setAuthOpen(false);
+          // For demo purposes, assume login was successful
+          setIsLoggedIn(true);
+        }} 
+      />
     </header>
   );
 };

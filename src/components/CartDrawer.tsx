@@ -6,6 +6,7 @@ import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { useNavigate } from "react-router-dom";
 
 interface CartDrawerProps {
   open: boolean;
@@ -14,8 +15,14 @@ interface CartDrawerProps {
 
 const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
   const { cartItems, removeFromCart, updateQuantity, clearCart, totalItems } = useCart();
+  const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+  const handleCheckout = () => {
+    onClose();
+    navigate('/checkout');
+  };
 
   if (totalItems === 0) {
     return (
@@ -120,7 +127,10 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ open, onClose }) => {
               >
                 Limpar Carrinho
               </Button>
-              <Button className="flex-1 bg-green-600 hover:bg-green-700">
+              <Button 
+                className="flex-1 bg-green-600 hover:bg-green-700"
+                onClick={handleCheckout}
+              >
                 Finalizar Compra
               </Button>
             </div>
