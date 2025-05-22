@@ -2,8 +2,14 @@
 import { ShoppingCart, User, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import CartDrawer from "./CartDrawer";
+import { useCart } from "@/contexts/CartContext";
 
 const Header = () => {
+  const [cartOpen, setCartOpen] = useState(false);
+  const { totalItems } = useCart();
+
   return (
     <header className="bg-white shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,9 +39,22 @@ const Header = () => {
             <Button variant="ghost" size="sm">
               Para Produtores
             </Button>
-            <Button variant="ghost" size="icon">
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
+            <div className="relative">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={() => setCartOpen(true)}
+                className="relative"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </Button>
+              <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+            </div>
             <Button variant="ghost" size="icon">
               <User className="h-5 w-5" />
             </Button>

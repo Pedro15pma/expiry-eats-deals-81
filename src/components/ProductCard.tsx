@@ -2,6 +2,7 @@
 import { Clock, MapPin, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
 
 interface Product {
   id: string;
@@ -23,6 +24,8 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { addToCart } = useCart();
+  
   const getUrgencyColor = (days: number) => {
     if (days <= 1) return "bg-red-500";
     if (days <= 2) return "bg-orange-500";
@@ -33,6 +36,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
     if (discount >= 50) return "bg-red-100 text-red-800";
     if (discount >= 30) return "bg-orange-100 text-orange-800";
     return "bg-yellow-100 text-yellow-800";
+  };
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.discountedPrice,
+      image: product.image
+    });
   };
 
   return (
@@ -87,7 +99,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
           Vence em: {product.expiryDate}
         </div>
         
-        <Button className="w-full bg-green-600 hover:bg-green-700">
+        <Button 
+          className="w-full bg-green-600 hover:bg-green-700"
+          onClick={handleAddToCart}
+        >
           Adicionar ao Carrinho
         </Button>
       </div>
