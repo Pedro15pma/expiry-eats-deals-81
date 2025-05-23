@@ -1,7 +1,10 @@
 
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="bg-gradient-to-br from-green-50 to-orange-50 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,10 +19,19 @@ const Hero = () => {
               Economize dinheiro e ajude a reduzir o desperdício de alimentos.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-lg px-8 py-3">
+              <Button 
+                size="lg" 
+                className="bg-green-600 hover:bg-green-700 text-lg px-8 py-3"
+                onClick={() => navigate('/products')}
+              >
                 Explorar Ofertas
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="text-lg px-8 py-3"
+                onClick={() => navigate('/about')}
+              >
                 Saiba Mais
               </Button>
             </div>

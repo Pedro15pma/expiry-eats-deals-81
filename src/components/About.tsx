@@ -1,7 +1,10 @@
 
 import { Leaf, Heart, DollarSign, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
+
   const features = [
     {
       icon: Leaf,
@@ -30,7 +33,7 @@ const About = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Por que escolher o FreshSave?
+            Por que escolher o PrazoCerto?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Somos mais que um marketplace. Somos uma solução inteligente que conecta 
@@ -63,10 +66,16 @@ const About = () => {
             Seja parte da solução e faça a diferença enquanto economiza.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
+            <button 
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
+              onClick={() => navigate('/products')}
+            >
               Começar a Comprar
             </button>
-            <button className="border border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
+            <button 
+              className="border border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
+              onClick={() => navigate('/store-registration')}
+            >
               Cadastrar Minha Loja
             </button>
           </div>

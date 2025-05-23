@@ -1,5 +1,5 @@
 
-import { Clock, MapPin, Star } from "lucide-react";
+import { Clock, MapPin, Star, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/CartContext";
@@ -17,6 +17,7 @@ interface Product {
   rating: number;
   image: string;
   category: string;
+  stock: number;
 }
 
 interface ProductCardProps {
@@ -38,13 +39,21 @@ const ProductCard = ({ product }: ProductCardProps) => {
     return "bg-yellow-100 text-yellow-800";
   };
 
+  const getStockColor = (stock: number) => {
+    if (stock <= 5) return "text-red-600";
+    if (stock <= 10) return "text-orange-600";
+    return "text-green-600";
+  };
+
   const handleAddToCart = () => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.discountedPrice,
-      image: product.image
-    });
+    if (product.stock > 0) {
+      addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.discountedPrice,
+        image: product.image
+      });
+    }
   };
 
   return (
@@ -84,7 +93,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </div>
         </div>
         
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <span className="text-lg font-bold text-gray-900">
               R$ {product.discountedPrice.toFixed(2)}
@@ -94,16 +103,24 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </span>
           </div>
         </div>
+
+        <div className="flex items-center mb-3">
+          <Package className="w-4 h-4 text-gray-400 mr-1" />
+          <span className={`text-sm font-medium ${getStockColor(product.stock)}`}>
+            {product.stock} em estoque
+          </span>
+        </div>
         
         <div className="text-xs text-gray-500 mb-3">
           Vence em: {product.expiryDate}
         </div>
         
         <Button 
-          className="w-full bg-green-600 hover:bg-green-700"
+          className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-400"
           onClick={handleAddToCart}
+          disabled={product.stock === 0}
         >
-          Adicionar ao Carrinho
+          {product.stock === 0 ? "Esgotado" : "Adicionar ao Carrinho"}
         </Button>
       </div>
     </div>

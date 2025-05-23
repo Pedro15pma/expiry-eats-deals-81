@@ -11,6 +11,8 @@ import { CartProvider } from "./contexts/CartContext";
 import Checkout from "./pages/Checkout";
 import Comments from "./pages/Comments";
 import StoreRegistration from "./pages/StoreRegistration";
+import About from "./pages/About";
+import Products from "./pages/Products";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -35,6 +37,8 @@ const App = () => {
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/comments" element={<Comments />} />
                 <Route path="/store-registration" element={<StoreRegistration />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/products" element={<Products />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

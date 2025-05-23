@@ -1,12 +1,10 @@
 
-import ProductCard from "./ProductCard";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ProductCard from "@/components/ProductCard";
 
-const FeaturedProducts = () => {
-  const navigate = useNavigate();
-
-  const products = [
+const Products = () => {
+  const allProducts = [
     {
       id: "1",
       name: "Pão Integral Artesanal 500g",
@@ -96,39 +94,81 @@ const FeaturedProducts = () => {
       image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&h=300&fit=crop",
       category: "Peixes",
       stock: 4
+    },
+    {
+      id: "7",
+      name: "Banana Prata Orgânica 1kg",
+      originalPrice: 8.90,
+      discountedPrice: 4.45,
+      discount: 50,
+      expiryDate: "24/12/2024",
+      daysUntilExpiry: 2,
+      store: "Frutas & Cia",
+      location: "Liberdade - SP",
+      rating: 4.5,
+      image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=300&fit=crop",
+      category: "Frutas",
+      stock: 30
+    },
+    {
+      id: "8",
+      name: "Croissant Francês 6 unidades",
+      originalPrice: 15.90,
+      discountedPrice: 7.95,
+      discount: 50,
+      expiryDate: "23/12/2024",
+      daysUntilExpiry: 1,
+      store: "Boulangerie Artesanal",
+      location: "Itaim - SP",
+      rating: 4.7,
+      image: "https://images.unsplash.com/photo-1555507036-ab794f4afe5c?w=400&h=300&fit=crop",
+      category: "Panificação",
+      stock: 18
+    },
+    {
+      id: "9",
+      name: "Leite Integral Orgânico 1L",
+      originalPrice: 12.50,
+      discountedPrice: 6.25,
+      discount: 50,
+      expiryDate: "25/12/2024",
+      daysUntilExpiry: 3,
+      store: "Fazenda Verde",
+      location: "Campo Belo - SP",
+      rating: 4.8,
+      image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=300&fit=crop",
+      category: "Laticínios",
+      stock: 25
     }
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Produtos em Destaque
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Descubra as melhores ofertas de produtos frescos próximos ao vencimento. 
-            Economia garantida e qualidade preservada!
-          </p>
+    <div className="min-h-screen">
+      <Header />
+      
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              Todos os Produtos
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Encontre as melhores ofertas de produtos frescos próximos ao vencimento. 
+              Economia garantida e qualidade preservada!
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-        
-        <div className="text-center mt-12">
-          <Button 
-            className="bg-green-600 hover:bg-green-700"
-            onClick={() => navigate('/products')}
-          >
-            Ver Todos os Produtos
-          </Button>
-        </div>
-      </div>
-    </section>
+      </section>
+      
+      <Footer />
+    </div>
   );
 };
 
-export default FeaturedProducts;
+export default Products;

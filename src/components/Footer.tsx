@@ -28,9 +28,6 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               <li><a href="#" className="hover:text-green-400 transition-colors">Como Funciona</a></li>
               <li><a href="#" className="hover:text-green-400 transition-colors">Produtos</a></li>
-              <li><a href="#" className="hover:text-green-400 transition-colors">Para Produtores</a></li>
-              <li><a href="#" className="hover:text-green-400 transition-colors">Sustentabilidade</a></li>
-              <li><a href="#" className="hover:text-green-400 transition-colors">Blog</a></li>
             </ul>
           </div>
           
