@@ -9,8 +9,7 @@ const Footer = () => {
           {/* Logo e Descrição */}
           <div className="md:col-span-1">
             <div className="flex items-center mb-4">
-              <span className="text-2xl font-bold text-green-400">FreshSave</span>
-              <span className="text-lg text-gray-300 ml-1">Market</span>
+              <span className="text-2xl font-bold text-green-400">PrazoCerto</span>
             </div>
             <p className="text-gray-400 mb-4">
               Conectando pessoas a alimentos frescos com preços acessíveis, 
@@ -40,9 +39,6 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Suporte</h3>
             <ul className="space-y-2 text-gray-400">
               <li><a href="#" className="hover:text-green-400 transition-colors">Central de Ajuda</a></li>
-              <li><a href="#" className="hover:text-green-400 transition-colors">FAQ</a></li>
-              <li><a href="#" className="hover:text-green-400 transition-colors">Política de Privacidade</a></li>
-              <li><a href="#" className="hover:text-green-400 transition-colors">Termos de Uso</a></li>
               <li><a href="#" className="hover:text-green-400 transition-colors">Contato</a></li>
             </ul>
           </div>
@@ -61,14 +57,14 @@ const Footer = () => {
               </div>
               <div className="flex items-center">
                 <Mail className="w-5 h-5 mr-2 text-green-400" />
-                <span>contato@freshsave.com</span>
+                <span>contato@prazocerto.com</span>
               </div>
             </div>
           </div>
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 FreshSave Market. Todos os direitos reservados.</p>
+          <p>&copy; 2024 PrazoCerto. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

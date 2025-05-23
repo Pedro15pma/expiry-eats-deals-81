@@ -35,8 +35,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => navigate('/')}>
             <div className="flex-shrink-0 flex items-center">
-              <span className="text-2xl font-bold text-green-600">FreshSave</span>
-              <span className="text-lg text-gray-600 ml-1">Market</span>
+              <span className="text-2xl font-bold text-green-600">PrazoCerto</span>
             </div>
           </div>
 
@@ -54,8 +53,19 @@ const Header = () => {
 
           {/* Navigation */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm">
-              Para Produtores
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => navigate('/store-registration')}
+            >
+              Cadastrar Minha Loja
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => navigate('/comments')}
+            >
+              Comentários
             </Button>
             <div className="relative">
               <Button 
